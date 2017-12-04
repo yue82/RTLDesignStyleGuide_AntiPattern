@@ -2,9 +2,14 @@
 module test_decoder;
 parameter STEP = 100;
 
+reg clk;
+
 reg [2-1:0]  in_r;
 reg          en_r;
 wire [4-1:0] out;
+
+reg [2-1:0]  failedCount_r;
+reg          isFailed_r;
 
 decoder decoder (
                  .in(in_r),
@@ -12,12 +17,39 @@ decoder decoder (
                  .out(out)
                  );
 
+always begin
+  clk = 1;
+  #( STEP/2 );
+  clk = 0;
+  #( STEP/2 );
+end
+
 initial begin
   // init input
-  // todo
+  input_data(2'h0, 1'b0);
+  failedCount_r <= 2'd0;
+
+  @( posedge clk );
 
   // test
-  // todo
+  input_data(2'h3, 1'b1);
+  @( posedge clk );
+  check_result(out, 4'b1000, isFailed_r);
+  failedCount_r += isFailed_r;
+
+  input_data(2'h1, 1'b1);
+  @( posedge clk );
+  check_result(out, 4'b0010, isFailed_r);
+  failedCount_r += isFailed_r;
+
+  input_data(2'h3, 1'b0);
+  @( posedge clk );
+  check_result(out, 4'b0000, isFailed_r);
+  failedCount_r += isFailed_r;
+
+  if (failedCount_r == 0) $display("DECODE SUCCESS!");
+  else $display("DECODE FAILED (count: %d)", failedCount_r);
+
   $finish;
 end
 

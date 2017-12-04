@@ -10,7 +10,7 @@ module and_or (
 reg              isAnd_r;
 reg [4-1:0]      out_r;
 
-always @(aIn or bIn or doOr) begin
+always @(aIn or bIn or doAnd or doOr) begin
   if (doAnd && !doOr) begin
     out_r = aIn && bIn;
     isAnd_r = 1'b1;
