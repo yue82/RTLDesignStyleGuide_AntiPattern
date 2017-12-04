@@ -42,6 +42,7 @@ module test_sub_later;
 
     // test
     // todo
+    $finish;
   end
 
   task input_data;
@@ -56,7 +57,7 @@ module test_sub_later;
   task check_result(
                     input signed [5-1:0] subOut_o,
                     input signed [5-1:0] answer,
-                    output               isFailed,
+                    output               isFailed
                     );
     begin
       if (subOut_o != answer) begin

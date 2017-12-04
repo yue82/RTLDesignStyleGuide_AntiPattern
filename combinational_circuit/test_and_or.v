@@ -15,6 +15,7 @@ module test_and_or;
                  .bIn(bIn_r),
                  .doAnd(doAnd_r),
                  .doOr(doOr_r),
+                 .isAnd(isAnd),
                  .out(out)
                  );
 
@@ -25,10 +26,9 @@ module test_and_or;
     // init input
     // todo
 
-    @( posedge clk );
-
     // test
     // todo
+    $finish;
   end
 
   task input_data;
@@ -49,7 +49,7 @@ module test_and_or;
                     input [4-1:0] out_o,
                     input         doAnd_i,
                     input [4-1:0] answer,
-                    output        isFailed,
+                    output        isFailed
                     );
     begin
       if (isAnd_o != doAnd_i) begin

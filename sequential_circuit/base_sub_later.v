@@ -14,7 +14,7 @@ module sub_later (
 
   always @( posedge clk ) begin
     a_r <= aIn;   b_r <= bIn;
-    sub1_r <= a_s_r - b_s_r;
+    sub1_r <= a_r - b_r;
     sub2_r <= sub1_r;
     sub3_r <= sub2_r;
   end

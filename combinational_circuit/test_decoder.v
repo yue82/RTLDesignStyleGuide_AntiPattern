@@ -20,10 +20,9 @@ module test_decoder;
     // init input
     // todo
 
-    @( posedge clk );
-
     // test
     // todo
+    $finish;
   end
 
   task input_data;
@@ -38,7 +37,7 @@ module test_decoder;
   task check_result(
                     input [4-1:0] out_o,
                     input [4-1:0] answer,
-                    output        isFailed,
+                    output        isFailed
                     );
     begin
       if (out_o != answer) begin
