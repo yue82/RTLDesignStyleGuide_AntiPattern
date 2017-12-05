@@ -1,3 +1,13 @@
 work/
+db/
+incremental_db/
 transcript
 vsim.*
+*.rpt
+*.smsg
+*.summary
+*.pin
+*.qpf
+*.qsf
+*.rpt
+*.done
